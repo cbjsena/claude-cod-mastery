@@ -1,0 +1,172 @@
+/* 커스텀 스타일 */
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 페이드인 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* 모바일 메뉴 애니메이션 */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#mobile-menu:not(.hidden) {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* 프로젝트 카드 호버 효과 개선 */
+.project-card {
+    transition: all 0.3s ease-out;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+/* 스크롤바 커스터마이징 (선택사항) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* IntersectionObserver 애니메이션 클래스 */
+.scroll-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 그라데이션 테두리 효과 (선택) */
+.gradient-border {
+    background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #10b981 100%);
+    padding: 2px;
+}
+
+.gradient-border > div {
+    background: white;
+}
+
+/* 네비게이션 활성화 상태 */
+a[href="#about"]:target,
+a[href="#skills"]:target,
+a[href="#projects"]:target,
+a[href="#contact"]:target {
+    color: #3b82f6;
+}
+
+/* 헤더 그림자 세밀화 */
+header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 기술 스택 뱃지 호버 */
+.skill-badge {
+    transition: all 0.3s ease-out;
+}
+
+.skill-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* CTA 버튼 호버 */
+.btn-cta {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease-out;
+}
+
+.btn-cta:hover::before {
+    left: 100%;
+}
+
+/* 연락처 아이콘 호버 */
+.contact-icon {
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+.contact-icon:hover {
+    transform: scale(1.1) rotateY(10deg);
+}
+
+/* 섹션 제목 밑줄 */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #a855f7);
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* 다크 모드 지원 (선택) */
+@media (prefers-color-scheme: dark) {
+    body {
+        @apply bg-slate-900 text-slate-100;
+    }
+
+    header {
+        @apply bg-slate-800;
+    }
+
+    .skill-badge {
+        @apply bg-slate-700 text-slate-100;
+    }
+}

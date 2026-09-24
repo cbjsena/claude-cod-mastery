@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>카운터 앱</title>
+
+  <!--
+    Tailwind CSS를 CDN(인터넷 주소)으로 불러옵니다.
+    이렇게 하면 별도 설치 없이 바로 Tailwind의 스타일 클래스(class)들을 사용할 수 있어요.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen flex items-center justify-center">
+
+  <!--
+    카운터 전체를 감싸는 카드(box) 영역입니다.
+    bg-white: 배경을 흰색으로
+    rounded-2xl: 모서리를 둥글게
+    shadow-lg: 그림자를 넣어서 카드가 떠 있는 느낌을 줌
+    p-8: 안쪽 여백(padding)을 넉넉하게
+  -->
+  <div class="bg-white rounded-2xl shadow-lg p-8 w-80 text-center">
+
+    <h1 class="text-2xl font-bold text-slate-800 mb-6">카운터 앱</h1>
+
+    <!--
+      현재 숫자를 보여주는 부분입니다.
+      id="count"를 붙여서, JavaScript에서 이 부분을 찾아 값을 바꿀 수 있게 했어요.
+      마치 숫자에 이름표를 붙여준 것과 같아요. 나중에 이 이름표(id)로 정확히 찾아갑니다.
+    -->
+    <p id="count" class="text-6xl font-extrabold text-blue-600 mb-8">0</p>
+
+    <!-- 버튼 3개를 가로로 나란히 배치하는 영역 (flex + gap으로 간격을 줌) -->
+    <div class="flex justify-center gap-3">
+
+      <!-- 감소 버튼: onclick에 적어둔 함수가 클릭할 때마다 실행돼요 -->
+      <button
+        onclick="decrease()"
+        class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold text-xl w-14 h-14 rounded-full transition-colors"
+      >
+        -1
+      </button>
+
+      <!-- 리셋 버튼: 숫자를 다시 0으로 되돌려요 -->
+      <button
+        onclick="reset()"
+        class="bg-slate-400 hover:bg-slate-500 active:bg-slate-600 text-white font-semibold px-5 h-14 rounded-full transition-colors"
+      >
+        Reset
+      </button>
+
+      <!-- 증가 버튼 -->
+      <button
+        onclick="increase()"
+        class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-bold text-xl w-14 h-14 rounded-full transition-colors"
+      >
+        +1
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    // 현재 카운트 값을 저장하는 변수입니다.
+    // let로 선언했기 때문에 나중에 값이 계속 바뀔 수 있어요. (자판기 안의 잔액 같은 개념이에요)
+    let count = 0;
+
+    // 화면에 있는 <p id="count"> 요소를 미리 찾아서 변수에 담아둡니다.
+    // 이렇게 해두면 매번 다시 찾을 필요 없이 바로 화면 숫자를 바꿀 수 있어요.
+    const countDisplay = document.getElementById("count");
+
+    // 화면에 현재 count 값을 보여주는 함수입니다.
+    // 버튼을 누를 때마다 이 함수를 불러서 화면을 최신 값으로 갱신해요.
+    function updateDisplay() {
+      countDisplay.textContent = count;
+    }
+
+    // +1 버튼을 누르면 실행되는 함수
+    function increase() {
+      count = count + 1; // count에 1을 더해서 다시 count에 저장
+      updateDisplay();    // 바뀐 값을 화면에 보여주기
+    }
+
+    // -1 버튼을 누르면 실행되는 함수
+    function decrease() {
+      count = count - 1;
+      updateDisplay();
+    }
+
+    // Reset 버튼을 누르면 실행되는 함수
+    function reset() {
+      count = 0;
+      updateDisplay();
+    }
+  </script>
+
+</body>
+</html>
